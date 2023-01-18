@@ -6,26 +6,25 @@ export default async function postWallet(
   res: NextApiResponse<unknown>,
 ) {
   try {
-    if (req.method === 'POST') {
-      const {
-        name,
-        currency = 'ETH',
-        initialBalance = 0,
-      } = JSON.parse(req.body) as WalletPostData
-
-      const wallet = await prisma.wallet.create({
-        data: {
-          name,
-          currency,
-          balance: initialBalance,
-          todayBalanceChange: initialBalance,
-        },
-      })
-
-      res.json(wallet)
-    } else {
+    if (req.method !== 'POST') {
       throw Error('Only POST method is allowed')
     }
+
+    const {
+      name,
+      currency = 'ETH',
+      initialBalance = 0,
+    } = JSON.parse(req.body) as WalletPostData
+
+    const wallet = await prisma.wallet.create({
+      data: {
+        name,
+        currency,
+        balance: initialBalance,
+      },
+    })
+
+    res.json(wallet)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: `${error}` })
