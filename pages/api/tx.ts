@@ -1,20 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '@/utils/prisma'
-
-function isToday(_date: Date | string | undefined) {
-  if (!_date) {
-    return false
-  }
-
-  const today = new Date()
-  const date = typeof _date === 'object' ? _date : new Date(_date)
-
-  return (
-    today.getDate() === date.getDate() &&
-    today.getMonth() === date.getMonth() &&
-    today.getFullYear() === date.getFullYear()
-  )
-}
+import { isToday } from '@/utils/date'
 
 export default async function postTx(
   req: NextApiRequest,
