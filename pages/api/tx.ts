@@ -47,6 +47,7 @@ export default async function postTx(
     const newTodayBalanceChangeFrom = todayBalanceChangeFrom - amount
     const newTodayBalanceChangeTo = todayBalanceChangeTo + amount
 
+    // Step 5: update wallets
     const newWalletTo = await prisma.wallet.update({
       data: {
         balance: newBalanceTo,
