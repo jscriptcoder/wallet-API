@@ -10,7 +10,7 @@ generator client {
 model Wallet {
     id Int @id @default(autoincrement())
     name String @unique
-    currency String @unique
+    currency String
     balance Decimal
     todayBalanceChange Decimal
     createdAt DateTime @default(now())

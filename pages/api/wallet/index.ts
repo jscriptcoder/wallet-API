@@ -7,7 +7,11 @@ export default async function postWallet(
 ) {
   try {
     if (req.method === 'POST') {
-      const { name, currency, initialBalance } = req.body as WalletPostData
+      const {
+        name,
+        currency = 'ETH',
+        initialBalance = 0,
+      } = JSON.parse(req.body) as WalletPostData
 
       const wallet = await prisma.wallet.create({
         data: {
