@@ -13,6 +13,7 @@ interface Wallet {
   balance: number
   todayBalanceChange: number
   createdAt: Date | string
+  updatedAt: Date | string
 }
 
 interface TxPostData {
