@@ -16,6 +16,10 @@ interface Wallet {
   updatedAt: Date | string
 }
 
+interface WalletsResponse {
+  wallets: Wallet[]
+}
+
 interface TxPostData {
   from: number
   to: number

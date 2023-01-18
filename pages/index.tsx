@@ -1,7 +1,6 @@
-import { Inter } from '@next/font/google'
+import Page from '@/components/Page'
+import { List } from 'antd'
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
-  return <div>Index</div>
+export default function Index() {
+  return <Page>Index</Page>
 }
