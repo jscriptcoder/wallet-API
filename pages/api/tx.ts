@@ -11,12 +11,10 @@ export default async function postTx(
       throw Error('Only POST method is allowed')
     }
 
-    const {
-      from,
-      to,
-      amount,
-      currency = 'ETH',
-    } = JSON.parse(req.body) as TxPostData
+    const parsedBody: TxPostData =
+      typeof req.body === 'string' ? JSON.parse(req.body) : req.body
+
+    const { from, to, amount, currency = 'ETH' } = parsedBody
 
     // Step 1: get the wallets involved in the transaction
     const [fromWallet, toWallet] = await Promise.all([
@@ -68,7 +66,7 @@ export default async function postTx(
 
     res.json({ updatedWallets: [newWalletFrom, newWalletTo] })
   } catch (error) {
-    res.status(500).json({ error: `${error}` })
+    res.status(500).json({ error: `${error}` } as ErrorData)
   } finally {
     prisma.$disconnect()
   }

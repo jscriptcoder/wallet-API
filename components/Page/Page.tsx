@@ -1,7 +1,15 @@
+import { Typography } from 'antd'
 import { PropsWithChildren } from 'react'
 
-export default function Page({ children }: PropsWithChildren) {
+interface PageProps extends PropsWithChildren {
+  title: string
+}
+
+export default function Page({ title, children }: PageProps) {
   return (
-    <div className="h-full flex justify-center items-center">{children}</div>
+    <div className="h-full flex flex-col space-y-8 justify-center items-center">
+      <Typography.Title>{title}</Typography.Title>
+      {children}
+    </div>
   )
 }

@@ -16,7 +16,7 @@ interface Wallet {
   updatedAt: Date | string
 }
 
-interface WalletsResponse {
+interface WalletsData {
   wallets: Wallet[]
 }
 
@@ -25,4 +25,8 @@ interface TxPostData {
   to: number
   amount: number
   currency?: Currency // defaults to ETH
+}
+
+interface ErrorData {
+  error: string
 }

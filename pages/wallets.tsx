@@ -37,7 +37,7 @@ const columns: ColumnsType<Wallet> = [
   },
 ]
 
-export default function Wallets() {
+export default function ListWallets() {
   const [wallets, setWallets] = useState<Wallet[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -47,7 +47,12 @@ export default function Wallets() {
 
       try {
         const response = await fetch('/api/wallets')
-        const data = (await response.json()) as WalletsResponse
+        const data = (await response.json()) as WalletsData | ErrorData
+
+        if ('error' in data) {
+          throw Error(data.error)
+        }
+
         setWallets(data.wallets)
       } catch (e) {
         console.error(e)
@@ -60,8 +65,13 @@ export default function Wallets() {
   }, [])
 
   return (
-    <Page>
-      <Table columns={columns} dataSource={wallets} loading={loading} />
+    <Page title="List of wallets">
+      <Table
+        size="large"
+        columns={columns}
+        dataSource={wallets}
+        loading={loading}
+      />
     </Page>
   )
 }

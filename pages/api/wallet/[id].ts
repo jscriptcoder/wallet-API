@@ -23,7 +23,7 @@ export default async function getWallet(
     res.json(wallet)
   } catch (error) {
     console.error(error)
-    res.status(500).json({ error: `${error}` })
+    res.status(500).json({ error: `${error}` } as ErrorData)
   } finally {
     prisma.$disconnect()
   }

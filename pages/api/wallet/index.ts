@@ -10,11 +10,10 @@ export default async function postWallet(
       throw Error('Only POST method is allowed')
     }
 
-    const {
-      name,
-      currency = 'ETH',
-      initialBalance = 0,
-    } = JSON.parse(req.body) as WalletPostData
+    const parsedBody: WalletPostData =
+      typeof req.body === 'string' ? JSON.parse(req.body) : req.body
+
+    const { name, currency = 'ETH', initialBalance = 0 } = parsedBody
 
     const wallet = await prisma.wallet.create({
       data: {
@@ -27,7 +26,7 @@ export default async function postWallet(
     res.json(wallet)
   } catch (error) {
     console.error(error)
-    res.status(500).json({ error: `${error}` })
+    res.status(500).json({ error: `${error}` } as ErrorData)
   } finally {
     prisma.$disconnect()
   }
