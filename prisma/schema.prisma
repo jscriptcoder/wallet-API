@@ -1,0 +1,17 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/wallets.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Wallet {
+    id Int @id @default(autoincrement())
+    name String @unique
+    currency String @unique
+    balance Decimal
+    todayBalanceChange Decimal
+    createdAt DateTime @default(now())
+}
