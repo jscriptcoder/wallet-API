@@ -1,5 +1,9 @@
-import { TableOutlined, WalletOutlined } from '@ant-design/icons'
-import { Layout, Menu, MenuProps } from 'antd'
+import {
+  MoneyCollectOutlined,
+  TableOutlined,
+  WalletOutlined,
+} from '@ant-design/icons'
+import { Layout, Menu, MenuProps, Typography } from 'antd'
 import { useRouter } from 'next/router'
 import { Key, ReactNode, useState } from 'react'
 
@@ -37,6 +41,7 @@ export default function SideMenu() {
         items={[
           getItem('Create Wallet', 'wallet', <WalletOutlined />),
           getItem('List Wallets', 'wallets', <TableOutlined />),
+          getItem('Move funds', 'tx', <MoneyCollectOutlined />),
         ]}
         onClick={(item) => router.push(`/${item.key}`)}
       ></Menu>

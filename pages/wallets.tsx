@@ -1,8 +1,8 @@
 import { Table } from 'antd'
-import { useEffect, useState } from 'react'
+import { ColumnsType } from 'antd/es/table'
 import { format } from 'date-fns'
 import Page from '@/components/Page'
-import { ColumnsType } from 'antd/es/table'
+import useWallets from '@/utils/useWallets'
 
 const columns: ColumnsType<Wallet> = [
   {
@@ -38,31 +38,7 @@ const columns: ColumnsType<Wallet> = [
 ]
 
 export default function ListWallets() {
-  const [wallets, setWallets] = useState<Wallet[]>([])
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    const init = async () => {
-      setLoading(true)
-
-      try {
-        const response = await fetch('/api/wallets')
-        const data = (await response.json()) as WalletsData | ErrorData
-
-        if ('error' in data) {
-          throw Error(data.error)
-        }
-
-        setWallets(data.wallets)
-      } catch (e) {
-        console.error(e)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    init()
-  }, [])
+  const { wallets, loadingWallets } = useWallets()
 
   return (
     <Page title="List of wallets">
@@ -70,7 +46,7 @@ export default function ListWallets() {
         size="large"
         columns={columns}
         dataSource={wallets}
-        loading={loading}
+        loading={loadingWallets}
       />
     </Page>
   )

@@ -1,6 +1,6 @@
-import Page from '@/components/Page'
 import { Button, Form, Input, InputNumber, notification, Select } from 'antd'
 import { useCallback, useState } from 'react'
+import Page from '@/components/Page'
 
 export default function CreateWallet() {
   const [name, setName] = useState('')
@@ -9,6 +9,10 @@ export default function CreateWallet() {
   const [loading, setLoading] = useState(false)
 
   const createClick = useCallback(async () => {
+    if (!name) {
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -46,7 +50,12 @@ export default function CreateWallet() {
 
   return (
     <Page title="Create a wallet">
-      <Form labelCol={{ span: 10 }} layout="horizontal" size="large">
+      <Form
+        className="w-[30%]"
+        labelCol={{ span: 12 }}
+        layout="horizontal"
+        size="large"
+      >
         <Form.Item label="Wallet's name">
           <Input
             value={name}
@@ -64,8 +73,8 @@ export default function CreateWallet() {
             onChange={(value) => setInitialBalance(value || 0)}
           />
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 10 }}>
-          <Button disabled={loading} onClick={createClick}>
+        <Form.Item wrapperCol={{ offset: 12 }}>
+          <Button disabled={!name || loading} onClick={createClick}>
             Create
           </Button>
         </Form.Item>

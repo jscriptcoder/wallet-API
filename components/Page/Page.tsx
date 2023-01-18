@@ -7,8 +7,8 @@ interface PageProps extends PropsWithChildren {
 
 export default function Page({ title, children }: PageProps) {
   return (
-    <div className="h-full flex flex-col space-y-8 justify-center items-center">
-      <Typography.Title>{title}</Typography.Title>
+    <div className="h-full flex flex-col space-y-6 justify-center items-center">
+      {title && <Typography.Title>{title}</Typography.Title>}
       {children}
     </div>
   )

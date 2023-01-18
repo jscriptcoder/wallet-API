@@ -1,6 +1,11 @@
 import Page from '@/components/Page'
-import { List } from 'antd'
 
 export default function Index() {
-  return <Page title="Index">Index</Page>
+  return (
+    <Page title="Welcome to Wallet Manager">
+      <span className="text-white text-lg">
+        Click on the different options on the left hand side menu
+      </span>
+    </Page>
+  )
 }
