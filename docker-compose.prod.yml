@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  wallets-manager:
+    image: wallets-manager_prod
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.prod
+    ports:
+      - 3000:3000
+    networks:
+      - app-network
+
+networks:
+  app-network:

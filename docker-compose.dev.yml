@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  wallets-manager:
+    image: wallets-manager_dev
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    volumes:
+      - ./components:/usr/app/components
+      - ./pages:/usr/app/pages
+      - ./styles:/usr/app/styles
+      - ./utils:/usr/app/utils
+      - ./data:/usr/app/data
+    ports:
+      - 3000:3000
+    networks:
+      - app-network
+
+networks:
+  app-network:
