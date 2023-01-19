@@ -65,7 +65,7 @@ export default function MoveFunds() {
     } finally {
       setLoading(false)
     }
-  }, [from, to, amount, currency, wallets])
+  }, [from, to, amount, currency, wallets, counter])
 
   return (
     <Page title="Transact between wallets">
