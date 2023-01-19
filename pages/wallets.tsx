@@ -24,7 +24,7 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
         </span>
       </List.Item>
       <List.Item>
-        <label className="font-bold">Today's change</label>
+        <label className="font-bold">Today&#39;s change</label>
         <span>{todayBalanceChange}</span>
       </List.Item>
       <List.Item>
