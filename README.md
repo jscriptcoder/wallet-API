@@ -21,7 +21,18 @@ Install all the dependencies:
 $ npm install
 ```
 
-Now run the development environment with:
+Build and run for production:
+
+```bash
+$ npm run build
+$ npm start
+```
+
+The application runs on http://localhost:3000/
+
+---
+
+Run the development environment with:
 
 ```bash
 $ npm run dev
