@@ -4,7 +4,13 @@ import useWallets from '@/utils/useWallets'
 import { useCallback, useState } from 'react'
 
 export default function MoveFunds() {
-  const { wallets } = useWallets()
+  // This counter will be used to trigger wallets update
+  const [counter, setCounter] = useState(1)
+
+  // TODO: use loadingWallets to indicate wallets update
+  const { wallets, loadingWallets } = useWallets(counter)
+
+  // UI state
   const [from, setFrom] = useState<number>()
   const [to, setTo] = useState<number>()
   const [amount, setAmount] = useState<number>(0)
@@ -42,6 +48,15 @@ export default function MoveFunds() {
         message: 'Successful transaction',
         description: `The amount of ${amount} ${currency} has been moved from wallet "${wallets[0].name} to wallet "${wallets[1].name}""`,
       })
+
+      // Reset fields. TODO: useReducer
+      setFrom(undefined)
+      setTo(undefined)
+      setAmount(0)
+      setCurrency('ETH')
+
+      // Triger wallets update
+      setCounter(counter + 1)
     } catch (e) {
       notification.error({
         message: 'Something went wrong',
@@ -61,7 +76,7 @@ export default function MoveFunds() {
         size="large"
       >
         <Form.Item label="From wallet">
-          <Select onChange={(value) => setFrom(value)}>
+          <Select value={from} onChange={(value) => setFrom(value)}>
             {wallets &&
               wallets
                 .filter((wallet) => to !== wallet.id) // if selected, do not show "to" wallet
@@ -78,7 +93,7 @@ export default function MoveFunds() {
           </Select>
         </Form.Item>
         <Form.Item label="To wallet">
-          <Select onChange={(value) => setTo(value)}>
+          <Select value={to} onChange={(value) => setTo(value)}>
             {wallets &&
               wallets
                 .filter((wallet) => from !== wallet.id) // if selected, do not show "from" wallet

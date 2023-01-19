@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 
-export default function useWallets() {
+export default function useWallets(update: number) {
   const [wallets, setWallets] = useState<Wallet[]>([])
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const init = async () => {
+    const fetchWallets = async () => {
       setLoading(true)
 
       try {
@@ -24,8 +24,8 @@ export default function useWallets() {
       }
     }
 
-    init()
-  }, [])
+    fetchWallets()
+  }, [update])
 
   return {
     wallets,

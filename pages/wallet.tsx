@@ -38,6 +38,11 @@ export default function CreateWallet() {
         message: 'Wallet created',
         description: `A new wallet with name "${data.name}" and id ${data.id} has been created.`,
       })
+
+      // Reset fields. TODO: useReducer better?
+      setName('')
+      setCurrency('ETH')
+      setInitialBalance(0)
     } catch (e) {
       notification.error({
         message: 'Something went wrong',

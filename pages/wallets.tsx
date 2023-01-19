@@ -96,7 +96,7 @@ const columns: ColumnsType<Wallet> = [
 ]
 
 export default function ListWallets() {
-  const { wallets, loadingWallets } = useWallets()
+  const { wallets, loadingWallets } = useWallets(1)
 
   return (
     <Page title="List of wallets">
