@@ -6,7 +6,13 @@ import Footer from '@/components/Footer'
 import SideMenu from '@/components/SideMenu'
 
 const { darkAlgorithm } = theme
-const darkTheme = { algorithm: darkAlgorithm }
+const darkTheme = {
+  algorithm: darkAlgorithm,
+  token: {
+    colorPrimary: '#87cefb',
+    colorLinkHover: '#87cefb',
+  },
+}
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

@@ -4,7 +4,7 @@ import useWallets from '@/utils/useWallets'
 import { useCallback, useState } from 'react'
 
 export default function MoveFunds() {
-  const { wallets, loadingWallets } = useWallets()
+  const { wallets } = useWallets()
   const [from, setFrom] = useState<number>()
   const [to, setTo] = useState<number>()
   const [amount, setAmount] = useState<number>(0)
@@ -40,7 +40,7 @@ export default function MoveFunds() {
 
       notification.success({
         message: 'Successful transaction',
-        description: `TODO`,
+        description: `The amount of ${amount} ${currency} has been moved from wallet "${wallets[0].name} to wallet "${wallets[1].name}""`,
       })
     } catch (e) {
       notification.error({
@@ -66,7 +66,7 @@ export default function MoveFunds() {
               wallets
                 .filter((wallet) => to !== wallet.id) // if selected, do not show "to" wallet
                 .map((wallet) => (
-                  <Select.Option value={wallet.id}>
+                  <Select.Option key={wallet.id} value={wallet.id}>
                     <div className="flex flex-col">
                       <span>{wallet.name}</span>
                       <span className="text-xs text-gray-400">
@@ -83,7 +83,7 @@ export default function MoveFunds() {
               wallets
                 .filter((wallet) => from !== wallet.id) // if selected, do not show "from" wallet
                 .map((wallet) => (
-                  <Select.Option value={wallet.id}>
+                  <Select.Option key={wallet.id} value={wallet.id}>
                     <div className="flex flex-col">
                       <span>{wallet.name}</span>
                       <span className="text-xs text-gray-400">
