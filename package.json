@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "prisma db push",
+    "predev": "cp ./data/wallets.db /tmp",
     "dev": "next dev",
-    "prebuild": "prisma db push",
+    "prebuild": "cp ./data/wallets.db /tmp",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
