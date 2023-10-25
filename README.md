@@ -1,4 +1,4 @@
-# Wallet Manager
+# Wallet Manager - Home Assignment Test
 
 Small application to manage wallets and funds
 
